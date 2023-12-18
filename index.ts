@@ -4,6 +4,10 @@ import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 import mongoose from "mongoose";
 
+import commentController from "./controllers/commentController";
+import articleController from "./controllers/articleController";
+
+
 dotenv.config();
 
 const DBaddress = process.env.address;
@@ -25,6 +29,9 @@ app.use(cors({
     origin: ['http://localhost:3006']
 }));
 app.use(bodyParser.json());
+
+app.use('/', commentController);
+app.use('/', articleController);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Express + TypeScript Server');
